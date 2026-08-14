@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { asset } from "@/lib/asset";
 
 type PhotoTone = "default" | "fitness" | "combat" | "detail" | "community";
@@ -23,8 +22,7 @@ const toneClass: Record<PhotoTone, string> = {
 };
 
 /**
- * Photography slot — pass `src` when a real asset exists.
- * Labelled placeholder preserves crop until then.
+ * Photography slot — native <img> for reliable GitHub Pages paths.
  */
 export function PhotoFrame({
   label,
@@ -44,14 +42,14 @@ export function PhotoFrame({
       data-photo-slot={label}
     >
       {resolved ? (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           src={resolved}
           alt={alt ?? label}
-          fill
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, 60vw"
-          className="object-cover"
-          unoptimized
+          className="absolute inset-0 h-full w-full object-cover"
+          decoding="async"
+          loading={priority ? "eager" : "lazy"}
+          {...(priority ? { fetchPriority: "high" as const } : {})}
         />
       ) : (
         <div className="bf-photo__placeholder" aria-hidden />

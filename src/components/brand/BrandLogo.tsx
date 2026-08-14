@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { brand } from "@/content/site";
 import { asset } from "@/lib/asset";
 
@@ -10,8 +9,8 @@ type BrandLogoProps = {
 };
 
 /**
- * Primary brand mark — cropped transparent LOGO PNG (no empty padding).
- * No animation. Preserve proportions. Prefer dark chrome behind silver mark.
+ * Primary brand mark — cropped transparent LOGO PNG.
+ * Uses native <img> so GitHub Pages basePath is not double-prefixed by next/image.
  */
 export function BrandLogo({
   surface = "dark",
@@ -28,14 +27,15 @@ export function BrandLogo({
       className={`bf-logo bf-logo--${surface} bf-logo--${size} ${className}`.trim()}
       data-logo-surface={surface}
     >
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt={`${brand.name} — ${brand.philosophy}`}
         width={803}
         height={154}
-        priority={priority}
         className="bf-logo__img"
-        unoptimized
+        decoding="async"
+        {...(priority ? { fetchPriority: "high" as const } : {})}
       />
     </span>
   );
