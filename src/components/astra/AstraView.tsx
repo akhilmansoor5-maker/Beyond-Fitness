@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, brand, contact, images } from "@/content/site";
@@ -20,8 +21,9 @@ export function AstraView() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.95)] via-[rgba(5,5,5,0.55)] to-[rgba(5,5,5,0.35)]" />
         </div>
+        <FloatingMarks tone="dark" density="section" />
 
-        <div className="bf-shell relative flex min-h-[85vh] flex-col justify-end bf-section">
+        <div className="bf-shell relative z-[2] flex min-h-[85vh] flex-col justify-end bf-section">
           <Reveal>
             <p className="bf-meta text-[var(--bf-accent)]">
               Connected to {brand.name}

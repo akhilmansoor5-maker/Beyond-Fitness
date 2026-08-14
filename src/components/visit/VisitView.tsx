@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { contact, images } from "@/content/site";
@@ -17,7 +18,8 @@ export function VisitView() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--bf-page)] via-[rgba(243,241,236,0.88)] to-[rgba(243,241,236,0.4)]" />
         </div>
-        <div className="bf-shell relative bf-section min-h-[60vh] flex flex-col justify-end">
+        <FloatingMarks tone="light" density="section" />
+        <div className="bf-shell relative z-[2] bf-section min-h-[60vh] flex flex-col justify-end">
           <Reveal>
             <p className="bf-index mb-4">
               <span className="bf-index__num">01</span>

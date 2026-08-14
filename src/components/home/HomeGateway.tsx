@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, images } from "@/content/site";
@@ -12,10 +13,11 @@ export function HomeGateway() {
   return (
     <section
       id="enter"
-      className="relative border-t border-[var(--bf-line)] bg-[var(--bf-page)]"
+      className="relative overflow-hidden border-t border-[var(--bf-line)] bg-[var(--bf-page)]"
       aria-labelledby="enter-heading"
     >
-      <div className="bf-shell bf-section">
+      <FloatingMarks tone="light" density="section" />
+      <div className="bf-shell relative z-[2] bf-section">
         <Reveal>
           <p className="bf-index mb-4">
             <span className="bf-index__num">02</span>

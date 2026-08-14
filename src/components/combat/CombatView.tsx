@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, combatDisciplines, combatDivision, images } from "@/content/site";
@@ -18,6 +19,7 @@ export function CombatView() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[rgba(5,5,5,0.92)] via-[rgba(5,5,5,0.7)] to-[rgba(5,5,5,0.35)]" />
         </div>
+        <FloatingMarks tone="dark" density="section" />
         <div
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 opacity-[0.1] lg:block"
           style={{
@@ -26,7 +28,7 @@ export function CombatView() {
           }}
           aria-hidden
         />
-        <div className="bf-shell relative flex min-h-[70vh] flex-col justify-end bf-section">
+        <div className="bf-shell relative z-[2] flex min-h-[70vh] flex-col justify-end bf-section">
           <Reveal>
             <p className="bf-index mb-4">
               <span className="bf-index__num">01</span>

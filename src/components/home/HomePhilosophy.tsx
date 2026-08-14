@@ -1,3 +1,4 @@
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { Reveal } from "@/components/ui/Reveal";
 
 const pillars = ["Discipline", "Strength", "Skill", "Progression"] as const;
@@ -5,10 +6,11 @@ const pillars = ["Discipline", "Strength", "Skill", "Progression"] as const;
 export function HomePhilosophy() {
   return (
     <section
-      className="relative border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]"
+      className="relative overflow-hidden border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]"
       aria-labelledby="home-philosophy"
     >
-      <div className="bf-shell bf-section">
+      <FloatingMarks tone="light" density="section" />
+      <div className="bf-shell relative z-[2] bf-section">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <p className="bf-index mb-4">

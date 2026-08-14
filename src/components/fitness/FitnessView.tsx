@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, fitnessSystem, images } from "@/content/site";
@@ -18,7 +19,8 @@ export function FitnessView() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--bf-page)] via-[rgba(243,241,236,0.92)] to-[rgba(243,241,236,0.55)]" />
-        <div className="bf-shell relative bf-section">
+        <FloatingMarks tone="light" density="section" />
+        <div className="bf-shell relative z-[2] bf-section">
           <Reveal>
             <p className="bf-index mb-4">
               <span className="bf-index__num">01</span>
@@ -38,8 +40,9 @@ export function FitnessView() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]">
-        <div className="bf-shell bf-section">
+      <section className="relative overflow-hidden border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]">
+        <FloatingMarks tone="light" density="section" />
+        <div className="bf-shell relative z-[2] bf-section">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
             <Reveal className="lg:col-span-5">
               <p className="bf-index mb-4">

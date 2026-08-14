@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, images } from "@/content/site";
@@ -10,7 +11,9 @@ export function ArenasView() {
 
   return (
     <main className="pt-[var(--bf-nav-h)]">
-      <section className="bf-shell bf-section">
+      <section className="relative overflow-hidden">
+        <FloatingMarks tone="light" density="section" />
+        <div className="bf-shell relative z-[2] bf-section">
         <Reveal>
           <p className="bf-index mb-4">
             <span className="bf-index__num">01</span>
@@ -36,6 +39,7 @@ export function ArenasView() {
             priority
           />
         </Reveal>
+        </div>
       </section>
 
       <section className="border-t border-[var(--bf-line)]">

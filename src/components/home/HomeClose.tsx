@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function HomeClose() {
@@ -8,7 +9,8 @@ export function HomeClose() {
       aria-labelledby="home-close"
     >
       <div className="bf-grain opacity-[0.05]" aria-hidden />
-      <div className="bf-shell bf-section text-center">
+      <FloatingMarks tone="dark" density="section" />
+      <div className="bf-shell relative z-[2] bf-section text-center">
         <Reveal>
           <p className="bf-meta mb-6 text-[var(--bf-accent)]">Begin</p>
           <p
