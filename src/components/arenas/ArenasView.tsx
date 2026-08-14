@@ -56,7 +56,7 @@ export function ArenasView() {
                 aspect="absolute inset-0 h-full !aspect-auto"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(243,241,236,0.95)] via-[rgba(243,241,236,0.35)] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(243,241,236,0.95)] via-[rgba(243,241,236,0.4)] to-transparent" />
             <div className="relative z-10 flex h-full min-h-[70vw] flex-col justify-end p-6 md:min-h-[32rem] md:p-10">
               <p className="bf-meta text-[var(--bf-accent)]">Arena A</p>
               <h2 className="bf-display mt-2 text-[clamp(3rem,8vw,5.5rem)] text-[var(--bf-text)]">
@@ -76,7 +76,7 @@ export function ArenasView() {
             {...(astraExternal
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
-            className="group relative min-h-[70vw] overflow-hidden bg-[var(--bf-void)] md:min-h-[32rem]"
+            className="group relative min-h-[70vw] overflow-hidden md:min-h-[32rem]"
           >
             <div className="absolute inset-0">
               <PhotoFrame
@@ -86,13 +86,13 @@ export function ArenasView() {
                 aspect="absolute inset-0 h-full !aspect-auto"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,7,7,0.95)] via-[rgba(7,7,7,0.4)] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(243,241,236,0.95)] via-[rgba(243,241,236,0.4)] to-transparent" />
             <div className="relative z-10 flex h-full min-h-[70vw] flex-col justify-end p-6 md:min-h-[32rem] md:p-10">
               <p className="bf-meta text-[var(--bf-accent)]">Arena B</p>
-              <h2 className="bf-display mt-2 text-[clamp(3rem,8vw,5.5rem)] text-[var(--bf-bone)]">
+              <h2 className="bf-display mt-2 text-[clamp(3rem,8vw,5.5rem)] text-[var(--bf-text)]">
                 {astra.name}
               </h2>
-              <p className="mt-3 max-w-[28ch] text-[var(--bf-mute)]">
+              <p className="mt-3 max-w-[28ch] text-[var(--bf-text-mute)]">
                 Combat sport · Fencing · Kickboxing · Martial arts
               </p>
               <p className="bf-meta mt-6 text-[var(--bf-accent)]">
