@@ -664,3 +664,51 @@ button {
     width: auto;
   }
 }
+
+/* WhatsApp sticky conversion chip */
+.bf-wa-sticky {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(243, 241, 236, 0.2);
+  background: #070707;
+  color: #f3f1ec;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.bf-wa-sticky:hover {
+  background: var(--bf-accent);
+  transform: translateY(-1px);
+}
+
+.bf-wa-sticky__mark {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #25d366;
+  flex-shrink: 0;
+}
+
+.bf-wa-sticky:hover .bf-wa-sticky__mark {
+  background: #f3f1ec;
+}
+
+@media (min-width: 1024px) {
+  .bf-wa-sticky {
+    right: max(1.5rem, env(safe-area-inset-right));
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+}

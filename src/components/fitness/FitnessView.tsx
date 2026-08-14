@@ -131,9 +131,9 @@ export function FitnessView() {
               packages and pricing — confirmed with the client later.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/start-training">Start personal training</Button>
-              <Button href="/visit" variant="ghost">
-                Visit the floor
+              <Button href="/personal-training">Explore personal training</Button>
+              <Button href="/start-training" variant="ghost">
+                Book via WhatsApp
               </Button>
             </div>
           </Reveal>

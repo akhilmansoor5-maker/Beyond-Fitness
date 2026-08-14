@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { OfferBanner } from "@/components/ui/OfferBanner";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
-import { contact, images } from "@/content/site";
+import { contact, images, offer } from "@/content/site";
 
 const intents = [
   { id: "fitness", label: "Fitness" },
@@ -18,6 +19,7 @@ type IntentId = (typeof intents)[number]["id"];
 
 export function StartTrainingView() {
   const [intent, setIntent] = useState<IntentId | null>(null);
+  const [claimOffer, setClaimOffer] = useState(true);
 
   return (
     <main className="pt-[var(--bf-nav-h)]">
@@ -40,11 +42,25 @@ export function StartTrainingView() {
           </p>
           <h1 className="bf-display-lg">Start training.</h1>
           <p className="bf-lede mt-6 !text-[var(--bf-mute)]">
-            Choose your path. We&apos;ll connect via WhatsApp or call — form
-            backend lands next.
+            Choose your path, send your details, and we&apos;ll continue on
+            WhatsApp or a call — the fastest way to join Beyond Fitness Manjeri.
           </p>
+          {offer.active && (
+            <p className="bf-meta mt-6 text-[var(--bf-bone-dim)]">
+              New members · website enquiry · {offer.percent}% off · code{" "}
+              {offer.code}
+            </p>
+          )}
         </div>
       </section>
+
+      {offer.active && (
+        <section className="border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]">
+          <div className="bf-shell py-8">
+            <OfferBanner />
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-[var(--bf-line)] bg-[var(--bf-page)]">
         <div className="bf-shell bf-section">
@@ -120,8 +136,12 @@ export function StartTrainingView() {
               const message = String(data.get("message") || "");
               const preference =
                 intents.find((i) => i.id === intent)?.label ?? "Not specified";
+              const offerLine =
+                offer.active && claimOffer
+                  ? `\nOffer: ${offer.code} (${offer.percent}% new-member web offer)`
+                  : "";
               const text = encodeURIComponent(
-                `Beyond Fitness enquiry\nName: ${name}\nPhone: ${phone}\nInterest: ${preference}\nGoal: ${message}`,
+                `Beyond Fitness enquiry (website)\nName: ${name}\nPhone: ${phone}\nInterest: ${preference}\nGoal: ${message}${offerLine}`,
               );
               window.open(`${contact.whatsappUrl}?text=${text}`, "_blank");
             }}
@@ -158,7 +178,7 @@ export function StartTrainingView() {
                 readOnly
                 value={
                   intent
-                    ? intents.find((i) => i.id === intent)?.label ?? ""
+                    ? (intents.find((i) => i.id === intent)?.label ?? "")
                     : "Select an intent above"
                 }
                 className="mt-2 w-full border border-[var(--bf-line-strong)] bg-[var(--bf-page)] px-4 py-3 text-[var(--bf-text-mute)] outline-none"
@@ -176,13 +196,31 @@ export function StartTrainingView() {
               />
             </label>
 
-            <div className="md:col-span-2 flex flex-wrap items-center gap-4 pt-2">
+            {offer.active && (
+              <label className="md:col-span-2 flex items-start gap-3 border border-[var(--bf-line)] bg-[var(--bf-page)] p-4">
+                <input
+                  type="checkbox"
+                  checked={claimOffer}
+                  onChange={(e) => setClaimOffer(e.target.checked)}
+                  className="mt-1 accent-[var(--bf-accent)]"
+                />
+                <span className="text-[0.92rem] text-[var(--bf-text)]">
+                  I&apos;m a new member booking through the website — apply{" "}
+                  <strong>{offer.code}</strong> ({offer.percent}% off joining).
+                </span>
+              </label>
+            )}
+
+            <div className="flex flex-wrap items-center gap-4 pt-2 md:col-span-2">
               <button type="submit" className="bf-btn bf-btn--primary">
                 <span className="bf-btn__mark" aria-hidden />
                 Send via WhatsApp
               </button>
               <Button href={contact.phoneHref} variant="ghost">
                 Call {contact.phoneDisplay}
+              </Button>
+              <Button href="/personal-training" variant="ghost">
+                About personal training
               </Button>
             </div>
           </form>

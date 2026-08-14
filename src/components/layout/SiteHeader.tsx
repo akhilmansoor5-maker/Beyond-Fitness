@@ -57,7 +57,7 @@ export function SiteHeader() {
           <BrandLogo surface="dark" size="nav" priority />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Primary">
           {links.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -65,7 +65,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`bf-link text-[0.75rem] ${
+                className={`bf-link text-[0.7rem] tracking-[0.12em] ${
                   active
                     ? "text-[var(--bf-accent)]"
                     : "text-[var(--bf-bone-dim)] hover:text-[var(--bf-bone)]"

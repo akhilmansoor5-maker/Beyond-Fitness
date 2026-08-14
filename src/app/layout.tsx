@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow_Condensed, Outfit, IBM_Plex_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { WhatsAppSticky } from "@/components/layout/WhatsAppSticky";
 import { pageMeta } from "@/content/site";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WhatsAppSticky />
       </body>
     </html>
   );
