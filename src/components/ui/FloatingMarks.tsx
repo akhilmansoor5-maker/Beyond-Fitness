@@ -110,7 +110,7 @@ export function FloatingMarks({
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-[1] overflow-hidden ${color} ${className}`.trim()}
+      className={`pointer-events-none absolute inset-0 z-[1] overflow-hidden max-md:hidden ${color} ${className}`.trim()}
       aria-hidden
     >
       <motion.div

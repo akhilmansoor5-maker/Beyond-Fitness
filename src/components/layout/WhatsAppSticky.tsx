@@ -2,7 +2,7 @@
 
 import { contact, offer } from "@/content/site";
 
-/** Persistent WhatsApp entry — strongest on mobile */
+/** Persistent WhatsApp entry — icon-first on mobile to reduce clutter */
 export function WhatsAppSticky() {
   const text = encodeURIComponent(
     `Hi Beyond Fitness — I'd like to start training.${

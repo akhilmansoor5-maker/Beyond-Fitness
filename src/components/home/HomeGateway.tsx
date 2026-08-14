@@ -16,7 +16,7 @@ export function HomeGateway() {
       href: "/fitness",
       external: false,
       index: "Arena A",
-      cta: "Train fitness →",
+      cta: "Train →",
       title: "Fitness",
       meta: "Strength · PT · Conditioning",
       image: images.homeFitness,
@@ -27,7 +27,7 @@ export function HomeGateway() {
       href: astraHref,
       external: astraExternal,
       index: "Arena B",
-      cta: "Explore Astra →",
+      cta: "Explore →",
       title: astra.name,
       meta: "Combat sport · Skill · Discipline",
       image: images.homeCombat,
@@ -44,10 +44,10 @@ export function HomeGateway() {
       <FloatingMarks tone="light" density="section" />
       <div className="bf-shell relative z-[2] bf-section">
         <Reveal>
-          <p className="bf-index mb-4">
+          <p className="bf-index mb-3 md:mb-4">
             <span className="bf-index__num">02</span>
             <span className="mx-2 opacity-40">/</span>
-            Enter the world
+            Enter
           </p>
           <h2
             id="enter-heading"
@@ -59,7 +59,7 @@ export function HomeGateway() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 md:gap-6">
+        <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
           {arenas.map((arena, i) => (
             <Reveal key={arena.key} delay={0.06 * i}>
               <Link
@@ -67,31 +67,32 @@ export function HomeGateway() {
                 {...(arena.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="group flex h-full flex-col border border-[var(--bf-line)] bg-[var(--bf-page-alt)] p-6 transition-colors hover:border-[var(--bf-accent)] hover:bg-[var(--bf-bone-soft)] md:min-h-[22rem] md:p-8"
+                className="group flex h-full flex-col overflow-hidden border border-[var(--bf-line)] bg-[var(--bf-page-alt)] transition-colors hover:border-[var(--bf-accent)]"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <span className="bf-meta text-[var(--bf-accent)]">
-                    {arena.index}
-                  </span>
-                  <span className="bf-meta text-[var(--bf-text-mute)] group-hover:text-[var(--bf-accent)]">
-                    {arena.cta}
-                  </span>
-                </div>
-                <div className="mt-8">
-                  <p className="bf-display text-[clamp(2.5rem,6vw,4.5rem)] text-[var(--bf-text)]">
-                    {arena.title}
-                  </p>
-                  <p className="bf-meta mt-3 text-[var(--bf-text-mute)]">
-                    {arena.meta}
-                  </p>
-                </div>
-                <div className="mt-8 grow">
+                {/* Image-first on mobile for visual pull */}
+                <div className="order-1 md:order-2 md:mt-0">
                   <PhotoFrame
                     label={arena.image.label}
                     src={arena.image.src}
                     tone={arena.tone}
-                    aspect="aspect-[16/10]"
+                    aspect="aspect-[16/10] max-md:aspect-[5/4]"
                   />
+                </div>
+                <div className="order-2 flex flex-col p-5 md:order-1 md:p-8">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="bf-meta text-[var(--bf-accent)]">
+                      {arena.index}
+                    </span>
+                    <span className="bf-meta text-[var(--bf-text-mute)] group-hover:text-[var(--bf-accent)]">
+                      {arena.cta}
+                    </span>
+                  </div>
+                  <p className="bf-display mt-4 text-[clamp(2.25rem,8vw,4.5rem)] text-[var(--bf-text)] md:mt-6">
+                    {arena.title}
+                  </p>
+                  <p className="bf-meta mt-2 text-[var(--bf-text-mute)] md:mt-3">
+                    {arena.meta}
+                  </p>
                 </div>
               </Link>
             </Reveal>
@@ -99,16 +100,16 @@ export function HomeGateway() {
         </div>
 
         <Reveal delay={0.12}>
-          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <Button href="/arenas" className="w-full justify-center sm:w-auto">
-              Explore the arenas
+          <div className="mt-8 md:mt-10">
+            <Button href="/start-training" className="w-full justify-center sm:w-auto">
+              Start training
             </Button>
             <Button
-              href="/start-training"
+              href="/arenas"
               variant="ghost"
-              className="w-full justify-center sm:w-auto"
+              className="mt-3 hidden w-full justify-center sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto"
             >
-              Start training
+              Explore the arenas
             </Button>
           </div>
         </Reveal>

@@ -592,27 +592,33 @@ button {
 /* ── Mobile gutters + density ─────────────────────────────── */
 @media (max-width: 767px) {
   :root {
-    --bf-gutter: 1.1rem;
-    --bf-section-y: clamp(3.25rem, 14vw, 5rem);
-    --bf-nav-h: 3.85rem;
+    --bf-gutter: 1.25rem;
+    --bf-section-y: clamp(3.75rem, 16vw, 5.5rem);
+    --bf-nav-h: 3.65rem;
   }
 
   .bf-display-hero {
-    font-size: clamp(3.5rem, 18vw, 5.5rem);
+    font-size: clamp(3.25rem, 16vw, 5rem);
   }
 
   .bf-display-lg {
-    font-size: clamp(2.35rem, 11vw, 3.5rem);
+    font-size: clamp(2.15rem, 10vw, 3.15rem);
   }
 
   .bf-lede {
-    max-width: 36ch;
-    font-size: 0.98rem;
+    max-width: 34ch;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .bf-btn {
     min-height: 2.85rem;
     padding: 0.75rem 1.15rem;
+  }
+
+  .bf-meta {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
   }
 
   .bf-logo--nav .bf-logo__img {
@@ -625,7 +631,6 @@ button {
     max-width: min(78vw, 14rem);
   }
 
-  /* Stack CTAs cleanly without awkward half-wraps */
   .bf-hero-ctas {
     display: flex;
     flex-direction: column;
@@ -636,6 +641,28 @@ button {
   .bf-hero-ctas > * {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Room for sticky WA chip */
+  body {
+    padding-bottom: 4.5rem;
+  }
+
+  .bf-wa-sticky {
+    min-height: 3.15rem;
+    min-width: 3.15rem;
+    padding: 0.85rem;
+    border-radius: 999px;
+    justify-content: center;
+  }
+
+  .bf-wa-sticky__label {
+    display: none;
+  }
+
+  .bf-wa-sticky__mark {
+    width: 0.65rem;
+    height: 0.65rem;
   }
 }
 

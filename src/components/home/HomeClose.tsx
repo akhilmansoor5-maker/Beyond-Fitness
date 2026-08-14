@@ -12,26 +12,28 @@ export function HomeClose() {
       <FloatingMarks tone="dark" density="section" />
       <div className="bf-shell relative z-[2] bf-section text-center">
         <Reveal>
-          <p className="bf-meta mb-6 text-[var(--bf-accent)]">Begin</p>
+          <p className="bf-meta mb-4 text-[var(--bf-accent)] md:mb-6">Begin</p>
           <p
-            className="bf-display-hero text-[var(--bf-bone)]"
-            style={{ fontSize: "clamp(3.5rem, 14vw, 10rem)" }}
+            className="bf-display text-[var(--bf-bone)]"
+            style={{ fontSize: "clamp(3rem, 14vw, 10rem)", lineHeight: 0.86 }}
           >
             Beyond
           </p>
           <h2
             id="home-close"
-            className="bf-display mt-4 text-[clamp(1.35rem,3vw,2.25rem)] text-[var(--bf-bone-dim)]"
+            className="bf-display mt-3 text-[clamp(1.15rem,3.5vw,2.25rem)] text-[var(--bf-bone-dim)] md:mt-4"
           >
             Two arenas. One standard.
           </h2>
-          <p className="mx-auto mt-5 max-w-[34ch] text-[var(--bf-mute)]">
+          <p className="mx-auto mt-4 hidden max-w-[34ch] text-[var(--bf-mute)] md:mt-5 md:block">
             Enter the training culture. Choose your arena — or start a
             conversation.
           </p>
-          <div className="bf-on-void mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button href="/start-training">Start your journey</Button>
-            <Button href="/visit" variant="ghost">
+          <div className="bf-on-void mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center md:mt-10">
+            <Button href="/start-training" className="justify-center">
+              Start your journey
+            </Button>
+            <Button href="/visit" variant="ghost" className="justify-center">
               Visit
             </Button>
           </div>

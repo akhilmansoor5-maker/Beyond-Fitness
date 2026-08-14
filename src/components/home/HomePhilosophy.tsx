@@ -11,36 +11,31 @@ export function HomePhilosophy() {
     >
       <FloatingMarks tone="light" density="section" />
       <div className="bf-shell relative z-[2] bf-section">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <Reveal className="lg:col-span-7">
-            <p className="bf-index mb-4">
-              <span className="bf-index__num">03</span>
-              <span className="mx-2 opacity-40">/</span>
-              The standard
-            </p>
-            <h2
-              id="home-philosophy"
-              className="bf-display-lg max-w-[14ch] text-[var(--bf-text)]"
-            >
-              Beyond appearance.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-5">
-            <p className="bf-lede lg:ml-auto">
-              Training is discipline, strength, skill, and consistency —
-              practised under one standard.
-            </p>
-          </Reveal>
-        </div>
+        <Reveal>
+          <p className="bf-index mb-3 md:mb-4">
+            <span className="bf-index__num">03</span>
+            <span className="mx-2 opacity-40">/</span>
+            The standard
+          </p>
+          <h2
+            id="home-philosophy"
+            className="bf-display-lg max-w-[14ch] text-[var(--bf-text)]"
+          >
+            Beyond appearance.
+          </h2>
+          <p className="bf-lede mt-4 md:mt-6 md:max-w-[34ch]">
+            Training is discipline, strength, skill, and consistency.
+          </p>
+        </Reveal>
 
-        <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-[var(--bf-line)] pt-8">
+        <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-[var(--bf-line)] pt-6 md:mt-12 md:flex md:flex-wrap md:gap-x-6 md:gap-y-3 md:pt-8">
           {pillars.map((item, i) => (
             <Reveal key={item} delay={0.04 * i}>
-              <li className="flex items-baseline gap-3">
+              <li className="flex items-baseline gap-2 md:gap-3">
                 <span className="bf-num bf-meta text-[var(--bf-accent)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="bf-display text-[clamp(1.5rem,3vw,2rem)] text-[var(--bf-text)]">
+                <span className="bf-display text-[clamp(1.25rem,4vw,2rem)] text-[var(--bf-text)]">
                   {item}
                 </span>
               </li>
