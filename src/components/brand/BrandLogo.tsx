@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { brand } from "@/content/site";
+import { asset } from "@/lib/asset";
 
 type BrandLogoProps = {
   surface?: "dark" | "light";
@@ -20,7 +21,7 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const onLightSrc = brand.logo.onLight;
   const useOnLight = surface === "light" && onLightSrc;
-  const src = useOnLight ? onLightSrc : brand.logo.primary;
+  const src = asset(useOnLight ? onLightSrc : brand.logo.primary);
 
   return (
     <span
@@ -34,6 +35,7 @@ export function BrandLogo({
         height={154}
         priority={priority}
         className="bf-logo__img"
+        unoptimized
       />
     </span>
   );

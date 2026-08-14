@@ -44,7 +44,7 @@
   --bf-gutter: clamp(1.25rem, 4vw, 3.5rem);
   --bf-gutter-mobile: 1.25rem;
   --bf-section-y: clamp(4.5rem, 12vw, 8.5rem);
-  --bf-nav-h: 4.25rem;
+  --bf-nav-h: 3.75rem;
   --bf-radius: 0px;
   --bf-radius-sm: 2px;
   --bf-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -229,29 +229,29 @@ button {
 }
 
 .bf-logo--nav .bf-logo__img {
-  height: clamp(1.85rem, 4vw, 2.5rem);
-  max-width: min(52vw, 13.5rem);
+  height: clamp(1.45rem, 3.2vw, 1.85rem);
+  max-width: min(46vw, 10rem);
 }
 
 .bf-logo--hero .bf-logo__img {
-  height: clamp(3.75rem, 9vw, 5.5rem);
-  max-width: min(90vw, 32rem);
+  height: clamp(2.5rem, 7vw, 4rem);
+  max-width: min(80vw, 22rem);
 }
 
 .bf-logo--footer .bf-logo__img {
-  height: clamp(3.5rem, 8vw, 5rem);
-  max-width: min(90vw, 28rem);
+  height: clamp(2.15rem, 5vw, 2.85rem);
+  max-width: min(72vw, 15rem);
 }
 
 @media (min-width: 1024px) {
   .bf-logo--nav .bf-logo__img {
-    height: 2.5rem;
-    max-width: 13.5rem;
+    height: 1.85rem;
+    max-width: 10rem;
   }
 
   .bf-logo--footer .bf-logo__img {
-    height: 5rem;
-    max-width: 28rem;
+    height: 2.85rem;
+    max-width: 15rem;
   }
 }
 
@@ -616,13 +616,13 @@ button {
   }
 
   .bf-logo--nav .bf-logo__img {
-    height: 2.15rem;
-    max-width: min(58vw, 11.5rem);
+    height: 1.55rem;
+    max-width: min(48vw, 9rem);
   }
 
   .bf-logo--footer .bf-logo__img {
-    height: clamp(2.75rem, 12vw, 3.75rem);
-    max-width: min(88vw, 20rem);
+    height: clamp(2rem, 9vw, 2.6rem);
+    max-width: min(78vw, 14rem);
   }
 
   /* Stack CTAs cleanly without awkward half-wraps */

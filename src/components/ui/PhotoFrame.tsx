@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 
 type PhotoTone = "default" | "fitness" | "combat" | "detail" | "community";
 
@@ -35,25 +36,30 @@ export function PhotoFrame({
   priority = false,
   children,
 }: PhotoFrameProps) {
+  const resolved = src ? asset(src) : null;
+
   return (
     <figure
       className={`bf-photo ${toneClass[tone]} ${aspect} ${className}`.trim()}
       data-photo-slot={label}
     >
-      {src ? (
+      {resolved ? (
         <Image
-          src={src}
+          src={resolved}
           alt={alt ?? label}
           fill
           priority={priority}
           sizes="(max-width: 768px) 100vw, 60vw"
           className="object-cover"
+          unoptimized
         />
       ) : (
         <div className="bf-photo__placeholder" aria-hidden />
       )}
       {children}
-      {!src && <figcaption className="bf-photo__label">[ {label} ]</figcaption>}
+      {!resolved && (
+        <figcaption className="bf-photo__label">[ {label} ]</figcaption>
+      )}
     </figure>
   );
 }

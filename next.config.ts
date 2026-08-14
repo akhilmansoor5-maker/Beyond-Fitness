@@ -3,6 +3,7 @@ import path from "path";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const repoName = "Beyond-Fitness";
+const basePath = isGithubPages ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   // Monorepo / parent-git lockfile: keep Turbopack rooted on this app
@@ -15,12 +16,11 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  ...(isGithubPages
-    ? {
-        basePath: `/${repoName}`,
-        assetPrefix: `/${repoName}/`,
-      }
-    : {}),
+  basePath: basePath || undefined,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;
