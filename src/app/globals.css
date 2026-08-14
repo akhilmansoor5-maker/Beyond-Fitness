@@ -1,0 +1,666 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   BEYOND FITNESS — DESIGN DNA
+   Direction: One Philosophy / Two Arenas + Editorial craft
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Raw palette */
+  --bf-void: #070707;
+  --bf-ink: #0e0e0e;
+  --bf-surface: #141414;
+  --bf-surface-raised: #1c1c1c;
+  --bf-bone: #f3f1ec;
+  --bf-bone-soft: #e8e4db;
+  --bf-bone-dim: #c8c4bb;
+  --bf-mute: #7a7770;
+  --bf-faint: #3a3936;
+  --bf-accent: #8f1f2e;
+  --bf-accent-hover: #b1283a;
+  --bf-accent-muted: rgba(143, 31, 46, 0.18);
+  --bf-overlay: rgba(7, 7, 7, 0.55);
+  --bf-overlay-heavy: rgba(7, 7, 7, 0.72);
+
+  /* Semantic (light-first default) */
+  --bf-page: var(--bf-bone);
+  --bf-page-alt: var(--bf-bone-soft);
+  --bf-text: var(--bf-void);
+  --bf-text-soft: #2a2a2a;
+  --bf-text-mute: #5c5954;
+  --bf-line: rgba(7, 7, 7, 0.12);
+  --bf-line-strong: rgba(7, 7, 7, 0.22);
+  --bf-nav-fg: var(--bf-void);
+  --bf-nav-bg: rgba(243, 241, 236, 0.92);
+  --bf-nav-logo-surface: light;
+
+  /* Typography families (set via next/font variables) */
+  --font-display: var(--font-display), "Arial Narrow", Impact, sans-serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+  --font-meta: var(--font-meta), ui-monospace, monospace;
+
+  /* Layout */
+  --bf-max: 1440px;
+  --bf-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --bf-gutter-mobile: 1.25rem;
+  --bf-section-y: clamp(4.5rem, 12vw, 8.5rem);
+  --bf-nav-h: 4.25rem;
+  --bf-radius: 0px;
+  --bf-radius-sm: 2px;
+  --bf-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --bf-ease-impact: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --bf-dur-fast: 180ms;
+  --bf-dur: 320ms;
+  --bf-dur-slow: 700ms;
+}
+
+/* Dark environment — combat / hero bands / high-contrast moments */
+[data-theme="dark"],
+.bf-theme-dark {
+  --bf-page: var(--bf-void);
+  --bf-page-alt: var(--bf-ink);
+  --bf-text: var(--bf-bone);
+  --bf-text-soft: var(--bf-bone-dim);
+  --bf-text-mute: var(--bf-mute);
+  --bf-line: rgba(243, 241, 236, 0.12);
+  --bf-line-strong: rgba(243, 241, 236, 0.22);
+  --bf-nav-fg: var(--bf-bone);
+  --bf-nav-bg: rgba(7, 7, 7, 0.92);
+  --bf-nav-logo-surface: dark;
+  color: var(--bf-bone);
+}
+
+/* Combat page — darker, faster visual temperature */
+[data-theme="combat"],
+.bf-theme-combat {
+  --bf-page: #050505;
+  --bf-page-alt: #0c0a0b;
+  --bf-text: var(--bf-bone);
+  --bf-text-soft: var(--bf-bone-dim);
+  --bf-text-mute: var(--bf-mute);
+  --bf-line: rgba(243, 241, 236, 0.14);
+  --bf-line-strong: rgba(243, 241, 236, 0.28);
+  --bf-nav-fg: var(--bf-bone);
+  --bf-nav-bg: rgba(5, 5, 5, 0.94);
+  --bf-nav-logo-surface: dark;
+  color: var(--bf-bone);
+}
+
+@theme inline {
+  --color-void: var(--bf-void);
+  --color-ink: var(--bf-ink);
+  --color-surface: var(--bf-surface);
+  --color-bone: var(--bf-bone);
+  --color-mute: var(--bf-mute);
+  --color-accent: var(--bf-accent);
+  --color-line: var(--bf-line);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-meta);
+}
+
+/* ── Reset / base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bf-page);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bf-page);
+  color: var(--bf-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  transition: background-color var(--bf-dur) var(--bf-ease-out);
+}
+
+::selection {
+  background: var(--bf-accent);
+  color: var(--bf-bone);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--bf-accent);
+  outline-offset: 3px;
+}
+
+/* ── Layout primitives ────────────────────────────────────── */
+.bf-shell {
+  width: min(100%, var(--bf-max));
+  margin-inline: auto;
+  padding-inline: var(--bf-gutter);
+}
+
+.bf-section {
+  padding-block: var(--bf-section-y);
+}
+
+/* ── Type roles ───────────────────────────────────────────── */
+.bf-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.bf-display-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.82;
+  text-transform: uppercase;
+  font-size: clamp(4.25rem, 18vw, 13.5rem);
+}
+
+.bf-display-lg {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-size: clamp(2.75rem, 8vw, 6.5rem);
+}
+
+.bf-display--plain {
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.bf-meta {
+  font-family: var(--font-meta);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--bf-text-mute);
+}
+
+/* Logo — no box, no animation; preserve ratio; large readable scale */
+.bf-logo {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* Logo — cropped mark; heights are real visible size (not padded canvas) */
+.bf-logo {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.bf-logo__img {
+  width: auto;
+  height: clamp(3.25rem, 8vw, 5rem);
+  max-width: min(92vw, 30rem);
+  object-fit: contain;
+  object-position: left center;
+}
+
+.bf-logo--nav .bf-logo__img {
+  height: clamp(1.85rem, 4vw, 2.5rem);
+  max-width: min(52vw, 13.5rem);
+}
+
+.bf-logo--hero .bf-logo__img {
+  height: clamp(3.75rem, 9vw, 5.5rem);
+  max-width: min(90vw, 32rem);
+}
+
+.bf-logo--footer .bf-logo__img {
+  height: clamp(3.5rem, 8vw, 5rem);
+  max-width: min(90vw, 28rem);
+}
+
+@media (min-width: 1024px) {
+  .bf-logo--nav .bf-logo__img {
+    height: 2.5rem;
+    max-width: 13.5rem;
+  }
+
+  .bf-logo--footer .bf-logo__img {
+    height: 5rem;
+    max-width: 28rem;
+  }
+}
+
+/* Metallic silver on light: gentle shadow only — never a pill/box */
+.bf-logo--light .bf-logo__img {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 0.6px rgba(0, 0, 0, 0.55));
+}
+
+.bf-logo--dark .bf-logo__img {
+  filter: none;
+}
+
+.bf-num {
+  font-family: var(--font-meta);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.bf-lede {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.1875rem);
+  font-weight: 400;
+  line-height: 1.55;
+  max-width: 34ch;
+  color: var(--bf-text-mute);
+}
+
+/* Theme-aware button defaults on light pages */
+[data-theme="light"] .bf-btn--primary,
+:root:not([data-theme]) .bf-btn--primary {
+  background: var(--bf-void);
+  color: var(--bf-bone);
+}
+
+[data-theme="light"] .bf-btn--primary:hover,
+:root:not([data-theme]) .bf-btn--primary:hover {
+  background: var(--bf-accent);
+  color: var(--bf-bone);
+}
+
+[data-theme="light"] .bf-btn--ghost,
+:root:not([data-theme]) .bf-btn--ghost {
+  color: var(--bf-void);
+  border-color: var(--bf-line-strong);
+}
+
+[data-theme="dark"] .bf-btn--primary,
+[data-theme="combat"] .bf-btn--primary,
+.bf-theme-dark .bf-btn--primary {
+  background: var(--bf-bone);
+  color: var(--bf-void);
+}
+
+[data-theme="dark"] .bf-btn--ghost,
+[data-theme="combat"] .bf-btn--ghost,
+.bf-theme-dark .bf-btn--ghost {
+  color: var(--bf-bone);
+  border-color: var(--bf-line-strong);
+}
+
+/* Must follow light-theme ghost rules — otherwise Enter the arenas stays black on black */
+.bf-on-void .bf-btn--primary,
+[data-theme="light"] .bf-on-void .bf-btn--primary,
+:root:not([data-theme]) .bf-on-void .bf-btn--primary {
+  background: var(--bf-bone);
+  color: var(--bf-void);
+}
+
+.bf-on-void .bf-btn--primary:hover,
+[data-theme="light"] .bf-on-void .bf-btn--primary:hover,
+:root:not([data-theme]) .bf-on-void .bf-btn--primary:hover {
+  background: var(--bf-accent);
+  color: var(--bf-bone);
+}
+
+.bf-on-void .bf-btn--ghost,
+[data-theme="light"] .bf-on-void .bf-btn--ghost,
+:root:not([data-theme]) .bf-on-void .bf-btn--ghost {
+  color: var(--bf-bone) !important;
+  border-color: rgba(243, 241, 236, 0.65) !important;
+  background: transparent;
+}
+
+.bf-on-void .bf-btn--ghost:hover,
+[data-theme="light"] .bf-on-void .bf-btn--ghost:hover,
+:root:not([data-theme]) .bf-on-void .bf-btn--ghost:hover {
+  border-color: var(--bf-bone) !important;
+  background: rgba(243, 241, 236, 0.1);
+  color: var(--bf-bone) !important;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.bf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.85rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: var(--bf-radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background var(--bf-dur) var(--bf-ease-out),
+    color var(--bf-dur) var(--bf-ease-out),
+    border-color var(--bf-dur) var(--bf-ease-out),
+    transform var(--bf-dur-fast) var(--bf-ease-out);
+}
+
+.bf-btn:active {
+  transform: scale(0.98);
+}
+
+.bf-btn--primary {
+  background: var(--bf-bone);
+  color: var(--bf-void);
+}
+
+.bf-btn--primary:hover {
+  background: var(--bf-accent);
+  color: var(--bf-bone);
+}
+
+.bf-btn--ghost {
+  background: transparent;
+  color: var(--bf-bone);
+  border-color: var(--bf-line-strong);
+}
+
+.bf-btn--ghost:hover {
+  border-color: var(--bf-bone);
+  background: rgba(243, 241, 236, 0.04);
+}
+
+.bf-btn__mark {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--bf-accent);
+  flex-shrink: 0;
+}
+
+.bf-btn--primary .bf-btn__mark {
+  background: var(--bf-accent);
+}
+
+.bf-btn--primary:hover .bf-btn__mark {
+  background: var(--bf-bone);
+}
+
+/* ── Links ────────────────────────────────────────────────── */
+.bf-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bf-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--bf-dur) var(--bf-ease-out);
+}
+
+.bf-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Grain / physical texture ─────────────────────────────── */
+.bf-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  z-index: 2;
+}
+
+/* ── Photography frame (client assets later) ──────────────── */
+.bf-photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--bf-surface);
+  border-radius: var(--bf-radius);
+}
+
+.bf-photo__placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(143, 31, 46, 0.35), transparent 42%),
+    linear-gradient(to top, rgba(7, 7, 7, 0.85), transparent 55%),
+    radial-gradient(ellipse at 70% 30%, rgba(143, 31, 46, 0.25), transparent 50%),
+    linear-gradient(160deg, #1a1214 0%, #0a0a0a 45%, #151018 100%);
+}
+
+.bf-photo__placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 12% 18% auto auto;
+  width: 42%;
+  height: 55%;
+  background: linear-gradient(to bottom, rgba(243, 241, 236, 0.08), transparent);
+  clip-path: polygon(18% 0, 100% 12%, 82% 100%, 0 78%);
+  opacity: 0.7;
+}
+
+/* Tone variants — preserve crop hierarchy until real assets land */
+.bf-photo--fitness .bf-photo__placeholder {
+  background:
+    linear-gradient(180deg, rgba(7, 7, 7, 0.15), rgba(7, 7, 7, 0.75)),
+    linear-gradient(135deg, rgba(143, 31, 46, 0.22), transparent 50%),
+    linear-gradient(200deg, #1c1416 0%, #0a0a0a 55%, #121012 100%);
+}
+
+.bf-photo--fitness .bf-photo__placeholder::before {
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 45%;
+  clip-path: none;
+  background: linear-gradient(to top, rgba(243, 241, 236, 0.1), transparent);
+}
+
+.bf-photo--combat .bf-photo__placeholder {
+  background:
+    linear-gradient(115deg, rgba(7, 7, 7, 0.7) 10%, transparent 55%),
+    linear-gradient(300deg, rgba(143, 31, 46, 0.4), transparent 45%),
+    linear-gradient(150deg, #120c10 0%, #070707 48%, #1a1218 100%);
+}
+
+.bf-photo--combat .bf-photo__placeholder::before {
+  inset: 8% auto auto 20%;
+  width: 55%;
+  height: 70%;
+  clip-path: polygon(40% 0, 100% 18%, 72% 100%, 0 70%);
+  background: linear-gradient(135deg, rgba(243, 241, 236, 0.14), transparent 70%);
+}
+
+.bf-photo--detail .bf-photo__placeholder {
+  background:
+    radial-gradient(circle at 40% 40%, rgba(143, 31, 46, 0.3), transparent 55%),
+    linear-gradient(45deg, #151212, #0a0a0a 60%, #1a1516);
+}
+
+.bf-photo--detail .bf-photo__placeholder::before {
+  inset: 30% 25% 30% 25%;
+  width: auto;
+  height: auto;
+  clip-path: none;
+  border: 1px solid rgba(243, 241, 236, 0.08);
+  background: transparent;
+}
+
+.bf-photo--community .bf-photo__placeholder {
+  background:
+    linear-gradient(to top, rgba(7, 7, 7, 0.8), transparent 50%),
+    linear-gradient(160deg, #1a1614 0%, #0c0c0c 50%, #141018 100%);
+}
+
+.bf-photo--community .bf-photo__placeholder::before {
+  inset: 20% 10% 15% 35%;
+  width: auto;
+  height: auto;
+  clip-path: none;
+  background: radial-gradient(ellipse at center, rgba(243, 241, 236, 0.08), transparent 70%);
+}
+
+.bf-rule {
+  height: 1px;
+  background: var(--bf-line);
+  border: 0;
+}
+
+.bf-index {
+  font-family: var(--font-meta);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bf-mute);
+}
+
+.bf-index__num {
+  color: var(--bf-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.bf-photo__label {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  font-family: var(--font-meta);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 236, 0.45);
+}
+
+.bf-vert {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.22em;
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Mobile gutters + density ─────────────────────────────── */
+@media (max-width: 767px) {
+  :root {
+    --bf-gutter: 1.1rem;
+    --bf-section-y: clamp(3.25rem, 14vw, 5rem);
+    --bf-nav-h: 3.85rem;
+  }
+
+  .bf-display-hero {
+    font-size: clamp(3.5rem, 18vw, 5.5rem);
+  }
+
+  .bf-display-lg {
+    font-size: clamp(2.35rem, 11vw, 3.5rem);
+  }
+
+  .bf-lede {
+    max-width: 36ch;
+    font-size: 0.98rem;
+  }
+
+  .bf-btn {
+    min-height: 2.85rem;
+    padding: 0.75rem 1.15rem;
+  }
+
+  .bf-logo--nav .bf-logo__img {
+    height: 2.15rem;
+    max-width: min(58vw, 11.5rem);
+  }
+
+  .bf-logo--footer .bf-logo__img {
+    height: clamp(2.75rem, 12vw, 3.75rem);
+    max-width: min(88vw, 20rem);
+  }
+
+  /* Stack CTAs cleanly without awkward half-wraps */
+  .bf-hero-ctas {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .bf-hero-ctas > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Safe areas for notched phones */
+@supports (padding: max(0px)) {
+  .bf-shell {
+    padding-inline: max(var(--bf-gutter), env(safe-area-inset-left))
+      max(var(--bf-gutter), env(safe-area-inset-right));
+  }
+
+  header[data-nav-chrome="dark"] {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+@media (min-width: 768px) {
+  .bf-hero-ctas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .bf-hero-ctas > * {
+    width: auto;
+  }
+}
