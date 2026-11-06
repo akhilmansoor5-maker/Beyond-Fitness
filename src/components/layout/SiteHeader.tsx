@@ -5,20 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { nav } from "@/content/site";
+import { brand, contact, nav } from "@/content/site";
 import { dur, easeOut } from "@/lib/motion";
 
-/**
- * Header chrome is always void/black so the metallic silver logo reads.
- * Page bodies stay light via PageChrome — only this bar is black.
- */
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -36,8 +32,8 @@ export function SiteHeader() {
 
   const headerBg =
     scrolled || open
-      ? "border-[rgba(243,241,236,0.12)] bg-[rgba(7,7,7,0.96)] backdrop-blur-md"
-      : "border-transparent bg-[rgba(7,7,7,0.88)]";
+      ? "border-[rgba(244,244,241,0.1)] bg-[rgba(5,5,5,0.96)] backdrop-blur-md"
+      : "border-transparent bg-[rgba(5,5,5,0.55)]";
 
   return (
     <header
@@ -45,7 +41,7 @@ export function SiteHeader() {
       data-nav-chrome="dark"
     >
       <div
-        className="bf-shell flex items-center justify-between gap-4"
+        className="bf-shell flex items-center justify-between gap-3"
         style={{ height: "var(--bf-nav-h)" }}
       >
         <Link
@@ -57,7 +53,10 @@ export function SiteHeader() {
           <BrandLogo surface="dark" size="nav" priority />
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center gap-6 lg:flex xl:gap-8"
+          aria-label="Primary"
+        >
           {links.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -65,7 +64,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`bf-link text-[0.7rem] tracking-[0.12em] ${
+                className={`bf-link tracking-[0.14em] ${
                   active
                     ? "text-[var(--bf-accent)]"
                     : "text-[var(--bf-bone-dim)] hover:text-[var(--bf-bone)]"
@@ -79,7 +78,7 @@ export function SiteHeader() {
           {cta && (
             <Link
               href={cta.href}
-              className="bf-btn bf-btn--primary !min-h-10 !px-4 !text-[0.7rem]"
+              className="bf-btn bf-btn--primary !min-h-9 !px-3.5 !text-[0.62rem]"
             >
               <span className="bf-btn__mark" aria-hidden />
               {cta.label}
@@ -87,67 +86,69 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <button
-          type="button"
-          className="relative flex h-11 w-11 items-center justify-center text-[var(--bf-bone)] lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">Menu</span>
-          <span
-            className={`absolute h-px w-5 bg-current transition-transform duration-300 ${
-              open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
-            }`}
-          />
-          <span
-            className={`absolute h-px w-5 bg-current transition-opacity duration-200 ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`absolute h-px w-5 bg-current transition-transform duration-300 ${
-              open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
-            }`}
-          />
-        </button>
+        <div className="flex items-center gap-1.5 lg:hidden">
+          {cta && (
+            <Link
+              href={cta.href}
+              onClick={() => setOpen(false)}
+              className="bf-meta border border-[rgba(244,244,241,0.28)] px-2.5 py-1.5 text-[var(--bf-bone)]"
+            >
+              Start
+            </Link>
+          )}
+          <button
+            type="button"
+            className="relative flex h-9 w-9 items-center justify-center text-[var(--bf-bone)]"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="sr-only">Menu</span>
+            <span
+              className={`absolute h-px w-4 bg-current transition-transform duration-300 ${
+                open ? "translate-y-0 rotate-45" : "-translate-y-1"
+              }`}
+            />
+            <span
+              className={`absolute h-px w-4 bg-current transition-opacity duration-200 ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute h-px w-4 bg-current transition-transform duration-300 ${
+                open ? "translate-y-0 -rotate-45" : "translate-y-1"
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-nav"
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: dur.base, ease: easeOut }}
-            className="max-h-[calc(100dvh-var(--bf-nav-h))] overflow-y-auto border-t border-[rgba(243,241,236,0.12)] bg-[rgba(7,7,7,0.98)] pb-[env(safe-area-inset-bottom)] text-[var(--bf-bone)] lg:hidden"
+            className="max-h-[calc(100dvh-var(--bf-nav-h))] overflow-y-auto border-t border-[rgba(244,244,241,0.1)] bg-[rgba(5,5,5,0.98)] pb-[env(safe-area-inset-bottom)] lg:hidden"
           >
-            <nav className="bf-shell flex flex-col gap-1 py-6" aria-label="Mobile">
-              {nav.map((link, i) => {
-                const active = pathname === link.href;
-                const isCta = "cta" in link && link.cta;
-                if (isCta) {
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="bf-btn bf-btn--primary mt-6 w-full"
-                    >
-                      <span className="bf-btn__mark" aria-hidden />
-                      {link.label}
-                    </Link>
-                  );
-                }
+            <nav className="bf-shell flex flex-col py-4" aria-label="Mobile">
+              <p className="bf-meta mb-4 text-[var(--bf-mute)]">
+                {brand.location}
+              </p>
+              {links.map((link, i) => {
+                const active =
+                  pathname === link.href ||
+                  pathname.startsWith(`${link.href}/`);
                 return (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: -12 }}
+                    initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      delay: 0.05 * i,
+                      delay: 0.04 * i,
                       duration: dur.base,
                       ease: easeOut,
                     }}
@@ -155,16 +156,49 @@ export function SiteHeader() {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className={`bf-display block border-b border-[rgba(243,241,236,0.12)] py-3.5 text-[clamp(1.85rem,8vw,2.25rem)] ${
-                        active ? "text-[var(--bf-accent)]" : "text-[var(--bf-bone)]"
+                      className={`flex items-baseline justify-between gap-3 border-b border-[rgba(244,244,241,0.1)] py-3 ${
+                        active
+                          ? "text-[var(--bf-accent)]"
+                          : "text-[var(--bf-bone)]"
                       }`}
                       aria-current={active ? "page" : undefined}
                     >
-                      {link.label}
+                      <span className="bf-display text-[1.35rem] tracking-[-0.03em]">
+                        {link.label}
+                      </span>
+                      <span className="bf-num bf-meta text-[var(--bf-mute)]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                     </Link>
                   </motion.div>
                 );
               })}
+              {cta && (
+                <Link
+                  href={cta.href}
+                  onClick={() => setOpen(false)}
+                  className="bf-btn bf-btn--primary mt-5 w-full !min-h-10"
+                >
+                  <span className="bf-btn__mark" aria-hidden />
+                  {cta.label}
+                </Link>
+              )}
+              <div className="mt-5 flex items-center justify-between gap-3 border-t border-[rgba(244,244,241,0.1)] pt-4">
+                <a
+                  href={contact.phoneHref}
+                  className="bf-meta text-[var(--bf-bone-dim)]"
+                >
+                  {contact.phoneDisplay}
+                </a>
+                <a
+                  href={contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bf-meta text-[var(--bf-accent)]"
+                >
+                  WhatsApp
+                </a>
+              </div>
             </nav>
           </motion.div>
         )}

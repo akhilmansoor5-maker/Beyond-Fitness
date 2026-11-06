@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Outfit, IBM_Plex_Mono } from "next/font/google";
+import { Syne, Manrope, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WhatsAppSticky } from "@/components/layout/WhatsAppSticky";
 import { pageMeta } from "@/content/site";
 import "./globals.css";
 
-const display = Barlow_Condensed({
+const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   display: "swap",
 });
 
-const body = Outfit({
+const body = Manrope({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const meta = IBM_Plex_Mono({
+const meta = JetBrains_Mono({
   variable: "--font-meta",
   subsets: ["latin"],
   weight: ["400", "500"],

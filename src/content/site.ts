@@ -18,13 +18,18 @@ export const brand = {
 
 export const nav = [
   { href: "/arenas", label: "Arenas" },
-  { href: "/fitness", label: "Fitness" },
+  { href: "/membership", label: "Plans" },
   { href: "/personal-training", label: "PT" },
-  { href: "/combat", label: "Combat" },
-  { href: "/astra", label: "Astra" },
-  { href: "/gallery", label: "Gallery" },
   { href: "/visit", label: "Visit" },
   { href: "/start-training", label: "Start training", cta: true },
+] as const;
+
+/** Secondary footer links (kept out of primary nav for mobile clarity) */
+export const footerExtra = [
+  { href: "/fitness", label: "Fitness" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/combat", label: "Combat" },
+  { href: "/astra", label: "Astra" },
 ] as const;
 
 /** Website booking offer — confirm wording with client anytime */
@@ -50,6 +55,78 @@ export const personalTraining = {
   ],
   firstSession:
     "First consult covers your goal, training history, and how PT fits your week. Packages and trainer matching are confirmed in person.",
+  packages: [
+    {
+      num: "01",
+      title: "18 sessions",
+      price: 8000,
+      priceDisplay: "₹8,000",
+      note: "Structured package for focused progression.",
+    },
+    {
+      num: "02",
+      title: "Date to date",
+      price: 10000,
+      priceDisplay: "₹10,000",
+      note: "Flexible date-to-date personal training.",
+    },
+  ],
+} as const;
+
+/** Membership & special offers — confirmed client pricing */
+export const membership = {
+  admission: {
+    title: "Admission fee",
+    price: 1000,
+    priceDisplay: "₹1,000",
+    note: "One-time admission for new members.",
+  },
+  plans: [
+    {
+      num: "01",
+      title: "Monthly",
+      price: 2000,
+      priceDisplay: "₹2,000",
+      cadence: "Per month",
+    },
+    {
+      num: "02",
+      title: "Quarterly",
+      price: 5000,
+      priceDisplay: "₹5,000",
+      cadence: "3 months",
+    },
+    {
+      num: "03",
+      title: "Half yearly",
+      price: 10000,
+      priceDisplay: "₹10,000",
+      cadence: "6 months",
+    },
+    {
+      num: "04",
+      title: "Yearly",
+      price: 20000,
+      priceDisplay: "₹20,000",
+      cadence: "12 months",
+    },
+  ],
+  specials: [
+    {
+      num: "01",
+      title: "Students offer",
+      priceDisplay: "₹1,500",
+      note: "₹1,500 only + admission fee.",
+    },
+    {
+      num: "02",
+      title: "Couple offer",
+      priceDisplay: "₹1,500",
+      note: "₹1,500 only per person + admission fee.",
+    },
+  ],
+  disclaimer:
+    "Prices as shared by Beyond Fitness. Final confirmation at the desk. Website new-member offer (WEB5) may apply where eligible.",
 } as const;
 
 export const contact = {
@@ -222,7 +299,12 @@ export const pageMeta = {
   personalTraining: {
     title: "Personal Training — Beyond Fitness Manjeri",
     description:
-      "One-to-one personal training at Beyond Fitness Manjeri. Book a consult via WhatsApp.",
+      "Personal training packages from ₹8,000 for 18 sessions. Book a consult at Beyond Fitness Manjeri.",
+  },
+  membership: {
+    title: "Membership Plans — Beyond Fitness Manjeri",
+    description:
+      "Admission ₹1,000. Monthly ₹2,000, quarterly ₹5,000, half-yearly ₹10,000, yearly ₹20,000. Student and couple offers available.",
   },
 } as const;
 

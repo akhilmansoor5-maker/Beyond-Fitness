@@ -12,7 +12,7 @@ export function OfferBanner({ compact = false, className = "" }: OfferBannerProp
 
   return (
     <div
-      className={`border border-[var(--bf-accent)] bg-[rgba(143,31,46,0.06)] p-4 md:p-6 ${className}`.trim()}
+      className={`border border-[var(--bf-accent)] bg-[var(--bf-accent-muted)] p-3.5 md:p-6 ${className}`.trim()}
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>

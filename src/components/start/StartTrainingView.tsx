@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { OfferBanner } from "@/components/ui/OfferBanner";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
@@ -41,9 +42,16 @@ export function StartTrainingView() {
             Onboarding
           </p>
           <h1 className="bf-display-lg">Start training.</h1>
-          <p className="bf-lede mt-6 !text-[var(--bf-mute)]">
+          <p className="bf-lede mt-4 !text-[var(--bf-mute)] md:mt-6">
             Choose your path, send your details, and we&apos;ll continue on
             WhatsApp or a call — the fastest way to join Beyond Fitness Manjeri.
+          </p>
+          <p className="mt-3 text-[0.85rem] text-[var(--bf-mute)] md:mt-4">
+            See{" "}
+            <Link href="/membership" className="underline underline-offset-4">
+              membership plans
+            </Link>{" "}
+            for fees and student / couple offers.
           </p>
           {offer.active && (
             <p className="bf-meta mt-6 text-[var(--bf-bone-dim)]">

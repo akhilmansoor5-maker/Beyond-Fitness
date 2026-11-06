@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, fitnessSystem, images } from "@/content/site";
@@ -8,8 +7,8 @@ import { astra, fitnessSystem, images } from "@/content/site";
 export function FitnessView() {
   return (
     <main className="pt-[var(--bf-nav-h)]">
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
+      <section className="bf-theme-dark relative overflow-hidden bg-[var(--bf-void)] text-[var(--bf-bone)]">
+        <div className="absolute inset-0 opacity-40">
           <PhotoFrame
             label={images.fitnessHero.label}
             src={images.fitnessHero.src}
@@ -18,21 +17,20 @@ export function FitnessView() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--bf-page)] via-[rgba(243,241,236,0.92)] to-[rgba(243,241,236,0.55)]" />
-        <FloatingMarks tone="light" density="section" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(5,5,5,0.94)] via-[rgba(5,5,5,0.72)] to-[rgba(5,5,5,0.35)]" />
         <div className="bf-shell relative z-[2] bf-section">
           <Reveal>
-            <p className="bf-index mb-4">
+            <p className="bf-index mb-3">
               <span className="bf-index__num">01</span>
               <span className="mx-2 opacity-40">/</span>
               Arena A · Fitness
             </p>
-            <h1 className="bf-display-lg text-[var(--bf-text)]">
+            <h1 className="bf-display-lg">
               Power.
               <br />
               Structure.
             </h1>
-            <p className="bf-lede mt-6">
+            <p className="bf-lede mt-4 !text-[var(--bf-mute)] md:mt-5">
               Strength, cardio, personal training, and guided fitness — a proper
               training floor for people who want a standard.
             </p>
@@ -41,7 +39,6 @@ export function FitnessView() {
       </section>
 
       <section className="relative overflow-hidden border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]">
-        <FloatingMarks tone="light" density="section" />
         <div className="bf-shell relative z-[2] bf-section">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
             <Reveal className="lg:col-span-5">

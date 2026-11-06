@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/Button";
-import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { contact, galleryItems, offer } from "@/content/site";
@@ -7,21 +6,20 @@ import { contact, galleryItems, offer } from "@/content/site";
 export function GalleryView() {
   return (
     <main className="pt-[var(--bf-nav-h)]">
-      <section className="relative overflow-hidden border-b border-[var(--bf-line)]">
-        <FloatingMarks tone="light" density="section" />
-        <div className="bf-shell relative z-[2] bf-section">
+      <section className="bf-theme-dark border-b border-[rgba(244,244,241,0.1)] bg-[var(--bf-void)] text-[var(--bf-bone)]">
+        <div className="bf-shell bf-section">
           <Reveal>
-            <p className="bf-index mb-4">
+            <p className="bf-index mb-3">
               <span className="bf-index__num">01</span>
               <span className="mx-2 opacity-40">/</span>
               Gallery
             </p>
-            <h1 className="bf-display-lg text-[var(--bf-text)]">
+            <h1 className="bf-display-lg">
               The floor.
               <br />
               The culture.
             </h1>
-            <p className="bf-lede mt-6">
+            <p className="bf-lede mt-4 !text-[var(--bf-mute)] md:mt-5">
               Real facility photography from Beyond Fitness Manjeri — training
               spaces, community, and atmosphere. More on{" "}
               <a

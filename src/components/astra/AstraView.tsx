@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/Button";
-import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, brand, contact, images } from "@/content/site";
@@ -21,20 +20,19 @@ export function AstraView() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.95)] via-[rgba(5,5,5,0.55)] to-[rgba(5,5,5,0.35)]" />
         </div>
-        <FloatingMarks tone="dark" density="section" />
 
         <div className="bf-shell relative z-[2] flex min-h-[85vh] flex-col justify-end bf-section">
           <Reveal>
             <p className="bf-meta text-[var(--bf-accent)]">
               Connected to {brand.name}
             </p>
-            <h1 className="bf-display mt-4 text-[clamp(4rem,16vw,10rem)] tracking-[-0.04em]">
+            <h1 className="bf-display mt-3 text-[clamp(3.25rem,14vw,9rem)] tracking-[-0.04em]">
               {astra.name}
             </h1>
-            <p className="mt-4 max-w-[34ch] text-[1.1rem] leading-relaxed text-[var(--bf-mute)]">
+            <p className="mt-4 max-w-[34ch] text-[1.05rem] leading-relaxed text-[var(--bf-mute)]">
               {astra.blurb}
             </p>
-            <div className="bf-on-void mt-10 flex flex-wrap gap-3">
+            <div className="bf-on-void mt-8 flex flex-wrap gap-2.5 md:mt-10">
               {hasExternal ? (
                 <Button href={exploreHref} external>
                   Explore Astra

@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { FloatingMarks } from "@/components/ui/FloatingMarks";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { astra, images } from "@/content/site";
 
-/** Homepage gateway — two equal arenas, same layout and tone */
 export function HomeGateway() {
   const astraHref = astra.externalUrl ?? astra.href;
   const astraExternal = Boolean(astra.externalUrl);
@@ -15,8 +13,8 @@ export function HomeGateway() {
       key: "fitness",
       href: "/fitness",
       external: false,
-      index: "Arena A",
-      cta: "Train →",
+      index: "01",
+      label: "Arena A",
       title: "Fitness",
       meta: "Strength · PT · Conditioning",
       image: images.homeFitness,
@@ -26,10 +24,10 @@ export function HomeGateway() {
       key: "astra",
       href: astraHref,
       external: astraExternal,
-      index: "Arena B",
-      cta: "Explore →",
+      index: "02",
+      label: "Arena B",
       title: astra.name,
-      meta: "Combat sport · Skill · Discipline",
+      meta: "Combat · Skill · Discipline",
       image: images.homeCombat,
       tone: "combat" as const,
     },
@@ -38,28 +36,24 @@ export function HomeGateway() {
   return (
     <section
       id="enter"
-      className="relative overflow-hidden border-t border-[var(--bf-line)] bg-[var(--bf-page)]"
+      className="bf-theme-dark border-t border-[rgba(244,244,241,0.1)] bg-[var(--bf-void)] text-[var(--bf-bone)]"
       aria-labelledby="enter-heading"
     >
-      <FloatingMarks tone="light" density="section" />
-      <div className="bf-shell relative z-[2] bf-section">
+      <div className="bf-shell bf-section">
         <Reveal>
-          <p className="bf-index mb-3 md:mb-4">
+          <p className="bf-index mb-3">
             <span className="bf-index__num">02</span>
             <span className="mx-2 opacity-40">/</span>
-            Enter
+            Arenas
           </p>
-          <h2
-            id="enter-heading"
-            className="bf-display-lg max-w-[12ch] text-[var(--bf-text)]"
-          >
+          <h2 id="enter-heading" className="bf-display-lg max-w-[12ch]">
             Two arenas.
             <br />
             One standard.
           </h2>
         </Reveal>
 
-        <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
+        <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-2 md:gap-4">
           {arenas.map((arena, i) => (
             <Reveal key={arena.key} delay={0.06 * i}>
               <Link
@@ -67,49 +61,53 @@ export function HomeGateway() {
                 {...(arena.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="group flex h-full flex-col overflow-hidden border border-[var(--bf-line)] bg-[var(--bf-page-alt)] transition-colors hover:border-[var(--bf-accent)]"
+                className="group relative block overflow-hidden"
               >
-                {/* Image-first on mobile for visual pull */}
-                <div className="order-1 md:order-2 md:mt-0">
-                  <PhotoFrame
-                    label={arena.image.label}
-                    src={arena.image.src}
-                    tone={arena.tone}
-                    aspect="aspect-[16/10] max-md:aspect-[5/4]"
-                  />
-                </div>
-                <div className="order-2 flex flex-col p-5 md:order-1 md:p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="bf-meta text-[var(--bf-accent)]">
-                      {arena.index}
-                    </span>
-                    <span className="bf-meta text-[var(--bf-text-mute)] group-hover:text-[var(--bf-accent)]">
-                      {arena.cta}
+                <PhotoFrame
+                  label={arena.image.label}
+                  src={arena.image.src}
+                  tone={arena.tone}
+                  aspect="aspect-[4/5] sm:aspect-[16/11]"
+                  className="transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.92)] via-[rgba(5,5,5,0.25)] to-transparent"
+                  aria-hidden
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 md:p-6">
+                  <div className="flex items-end justify-between gap-3">
+                    <div>
+                      <p className="bf-meta text-[var(--bf-accent)]">
+                        {arena.label}
+                      </p>
+                      <p className="bf-display mt-1 text-[clamp(2rem,6vw,3.5rem)] text-[var(--bf-bone)]">
+                        {arena.title}
+                      </p>
+                      <p className="bf-meta mt-2 text-[var(--bf-mute)]">
+                        {arena.meta}
+                      </p>
+                    </div>
+                    <span className="bf-meta text-[var(--bf-bone)] opacity-70 transition-opacity group-hover:opacity-100">
+                      Enter →
                     </span>
                   </div>
-                  <p className="bf-display mt-4 text-[clamp(2.25rem,8vw,4.5rem)] text-[var(--bf-text)] md:mt-6">
-                    {arena.title}
-                  </p>
-                  <p className="bf-meta mt-2 text-[var(--bf-text-mute)] md:mt-3">
-                    {arena.meta}
-                  </p>
                 </div>
               </Link>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.12}>
-          <div className="mt-8 md:mt-10">
-            <Button href="/start-training" className="w-full justify-center sm:w-auto">
+        <Reveal delay={0.1}>
+          <div className="bf-on-void mt-8 flex flex-col gap-2.5 sm:flex-row md:mt-10">
+            <Button href="/start-training" className="justify-center">
               Start training
             </Button>
             <Button
-              href="/arenas"
+              href="/membership"
               variant="ghost"
-              className="mt-3 hidden w-full justify-center sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto"
+              className="justify-center"
             >
-              Explore the arenas
+              View plans
             </Button>
           </div>
         </Reveal>
