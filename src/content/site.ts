@@ -188,6 +188,40 @@ export const trustPoints = [
   },
 ] as const;
 
+/** Homepage training offerings — grounded in the fitness + PT offering */
+export const trainingOfferings = [
+  {
+    num: "01",
+    title: "Weight training",
+    note: "Machines and free weights with room to progress.",
+  },
+  {
+    num: "02",
+    title: "Strength training",
+    note: "Structured loading and controlled progression.",
+  },
+  {
+    num: "03",
+    title: "Competition training",
+    note: "Sport-focused prep under the same standard.",
+  },
+  {
+    num: "04",
+    title: "Personal training",
+    note: "One-to-one coaching with clear packages.",
+  },
+  {
+    num: "05",
+    title: "Conditioning",
+    note: "Work capacity built with intent.",
+  },
+  {
+    num: "06",
+    title: "Combat & skill",
+    note: "Astra arena — fencing, kickboxing, and more.",
+  },
+] as const;
+
 export const fitnessSystem = [
   {
     num: "01",

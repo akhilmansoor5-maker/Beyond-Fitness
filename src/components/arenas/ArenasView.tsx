@@ -46,7 +46,7 @@ export function ArenasView() {
             href="/fitness"
             className="group relative min-h-[68vw] overflow-hidden border-b border-[var(--bf-line)] md:min-h-[32rem] md:border-b-0 md:border-r"
           >
-            <div className="absolute inset-0">
+            <div className="bf-arena-tile absolute inset-0">
               <PhotoFrame
                 label={images.fitnessHero.label}
                 src={images.fitnessHero.src}
@@ -54,16 +54,16 @@ export function ArenasView() {
                 aspect="absolute inset-0 h-full !aspect-auto"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(244,244,241,0.96)] via-[rgba(244,244,241,0.35)] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(244,244,241,0.97)] via-[rgba(244,244,241,0.4)] to-transparent transition-opacity duration-500" />
             <div className="relative z-10 flex h-full min-h-[68vw] flex-col justify-end p-5 md:min-h-[32rem] md:p-10">
               <p className="bf-meta text-[var(--bf-accent)]">Arena A</p>
-              <h2 className="bf-display mt-2 text-[clamp(2.5rem,7vw,5rem)] text-[var(--bf-text)]">
+              <h2 className="bf-display mt-2 text-[clamp(2.5rem,7vw,5rem)] text-[var(--bf-text)] transition-transform duration-500 group-hover:translate-x-2">
                 Fitness
               </h2>
               <p className="mt-3 max-w-[28ch] text-[var(--bf-text-mute)]">
                 Strength · Cardio · Personal training · Nutrition
               </p>
-              <p className="bf-meta mt-5 text-[var(--bf-accent)]">
+              <p className="bf-meta mt-5 text-[var(--bf-accent)] transition-all duration-300 group-hover:translate-x-1">
                 Enter fitness →
               </p>
             </div>
@@ -76,7 +76,7 @@ export function ArenasView() {
               : {})}
             className="group relative min-h-[68vw] overflow-hidden md:min-h-[32rem]"
           >
-            <div className="absolute inset-0">
+            <div className="bf-arena-tile absolute inset-0">
               <PhotoFrame
                 label={images.astraHero.label}
                 src={images.astraHero.src}
@@ -84,16 +84,16 @@ export function ArenasView() {
                 aspect="absolute inset-0 h-full !aspect-auto"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.92)] via-[rgba(5,5,5,0.35)] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.94)] via-[rgba(5,5,5,0.4)] to-transparent" />
             <div className="relative z-10 flex h-full min-h-[68vw] flex-col justify-end p-5 md:min-h-[32rem] md:p-10">
               <p className="bf-meta text-[var(--bf-accent)]">Arena B</p>
-              <h2 className="bf-display mt-2 text-[clamp(2.5rem,7vw,5rem)] text-[var(--bf-bone)]">
+              <h2 className="bf-display mt-2 text-[clamp(2.5rem,7vw,5rem)] text-[var(--bf-bone)] transition-transform duration-500 group-hover:translate-x-2">
                 {astra.name}
               </h2>
               <p className="mt-3 max-w-[28ch] text-[var(--bf-mute)]">
                 {astra.blurb}
               </p>
-              <p className="bf-meta mt-5 text-[var(--bf-accent)]">
+              <p className="bf-meta mt-5 text-[var(--bf-accent)] transition-all duration-300 group-hover:translate-x-1">
                 Enter Astra →
               </p>
             </div>

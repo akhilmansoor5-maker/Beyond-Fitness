@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { membership, personalTraining } from "@/content/site";
@@ -5,84 +6,104 @@ import { membership, personalTraining } from "@/content/site";
 export function HomePricing() {
   return (
     <section
-      className="border-t border-[var(--bf-line)] bg-[var(--bf-page-alt)]"
+      className="border-t border-[var(--bf-line)] bg-[var(--bf-page)]"
       aria-labelledby="home-pricing"
     >
       <div className="bf-shell bf-section">
-        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-          <Reveal className="lg:col-span-5">
-            <p className="bf-index mb-3">
-              <span className="bf-index__num">03</span>
-              <span className="mx-2 opacity-40">/</span>
-              Plans
-            </p>
+        <Reveal>
+          <p className="bf-index mb-4">
+            <span className="bf-index__num">04</span>
+            <span className="mx-2 opacity-40">/</span>
+            Plans
+          </p>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <h2
               id="home-pricing"
               className="bf-display-lg text-[var(--bf-text)]"
             >
               Clear pricing.
             </h2>
-            <p className="bf-lede mt-4">
+            <p className="bf-lede lg:!max-w-[34ch]">
               Admission {membership.admission.priceDisplay}. Monthly from{" "}
               {membership.plans[0].priceDisplay}. PT from{" "}
               {personalTraining.packages[0].priceDisplay}.
             </p>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          <Reveal delay={0.06} className="lg:col-span-7">
-            <div className="flex items-end justify-between gap-4 border-b border-[var(--bf-line)] pb-4">
-              <div>
-                <p className="bf-meta text-[var(--bf-accent)]">One-time</p>
-                <p className="bf-display mt-1 text-[clamp(1.35rem,4vw,2rem)] text-[var(--bf-text)]">
-                  {membership.admission.title}
-                </p>
-              </div>
-              <p className="bf-display text-[clamp(1.5rem,4vw,2.25rem)] text-[var(--bf-text)]">
-                {membership.admission.priceDisplay}
+        <Reveal delay={0.05}>
+          <Link
+            href="/membership"
+            className="bf-hover-card mt-8 flex flex-col gap-2 border border-[var(--bf-line)] bg-[var(--bf-page-alt)] p-5 sm:flex-row sm:items-end sm:justify-between md:mt-10 md:p-7"
+          >
+            <div>
+              <p className="bf-meta text-[var(--bf-accent)]">One-time</p>
+              <p className="bf-display mt-2 text-[clamp(1.5rem,4vw,2.35rem)] text-[var(--bf-text)]">
+                {membership.admission.title}
+              </p>
+              <p className="mt-1 text-[0.9rem] text-[var(--bf-text-mute)]">
+                {membership.admission.note}
               </p>
             </div>
+            <p className="bf-display text-[clamp(1.85rem,5vw,2.75rem)] text-[var(--bf-text)]">
+              {membership.admission.priceDisplay}
+            </p>
+          </Link>
+        </Reveal>
 
-            <ol>
-              {membership.plans.map((plan) => (
-                <li key={plan.title} className="bf-price-row">
-                  <span className="bf-num bf-meta text-[var(--bf-accent)]">
-                    {plan.num}
-                  </span>
-                  <div>
-                    <p className="bf-display text-[clamp(1.15rem,3.5vw,1.75rem)] text-[var(--bf-text)]">
-                      {plan.title}
-                    </p>
-                    <p className="bf-meta mt-0.5">{plan.cadence}</p>
-                  </div>
-                  <p className="bf-display text-[clamp(1.15rem,3.5vw,1.75rem)] text-[var(--bf-text)]">
-                    {plan.priceDisplay}
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {membership.plans.map((plan, i) => (
+            <Reveal key={plan.title} delay={0.04 * i}>
+              <Link
+                href="/membership"
+                className="bf-hover-card group flex h-full flex-col justify-between border border-[var(--bf-line)] bg-[var(--bf-page-alt)] p-4 md:p-5"
+              >
+                <div>
+                  <p className="bf-meta text-[var(--bf-accent)]">{plan.num}</p>
+                  <p className="bf-display mt-3 text-[clamp(1.25rem,3vw,1.65rem)] text-[var(--bf-text)] transition-colors duration-300 group-hover:text-[var(--bf-accent)]">
+                    {plan.title}
                   </p>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8">
-          {membership.specials.map((item) => (
-            <div
-              key={item.title}
-              className="border border-[var(--bf-line)] bg-[var(--bf-page)] p-4 md:p-5"
-            >
-              <p className="bf-meta text-[var(--bf-accent)]">{item.title}</p>
-              <p className="bf-display mt-2 text-[clamp(1.35rem,4vw,1.85rem)] text-[var(--bf-text)]">
-                {item.priceDisplay}
-              </p>
-              <p className="mt-1.5 text-[0.85rem] text-[var(--bf-text-mute)]">
-                {item.note}
-              </p>
-            </div>
+                  <p className="bf-meta mt-2 text-[var(--bf-mute)]">
+                    {plan.cadence}
+                  </p>
+                </div>
+                <p className="bf-display mt-6 text-[clamp(1.35rem,3.5vw,1.85rem)] text-[var(--bf-text)]">
+                  {plan.priceDisplay}
+                </p>
+              </Link>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-7">
-          <Button href="/membership" className="w-full justify-center sm:w-auto">
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {membership.specials.map((item, i) => (
+            <Reveal key={item.title} delay={0.04 * i}>
+              <Link
+                href="/membership"
+                className="bf-hover-card group block border border-[var(--bf-line)] bg-[var(--bf-page-alt)] p-4 md:p-5"
+              >
+                <p className="bf-meta text-[var(--bf-accent)]">{item.title}</p>
+                <p className="bf-display mt-2 text-[clamp(1.35rem,3.5vw,1.85rem)] text-[var(--bf-text)] transition-colors duration-300 group-hover:text-[var(--bf-accent)]">
+                  {item.priceDisplay}
+                </p>
+                <p className="mt-1.5 text-[0.85rem] text-[var(--bf-text-mute)]">
+                  {item.note}
+                </p>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
+          <Button href="/membership" className="justify-center">
             All membership plans
+          </Button>
+          <Button
+            href="/personal-training"
+            variant="ghost"
+            className="justify-center"
+          >
+            PT packages
           </Button>
         </div>
       </div>

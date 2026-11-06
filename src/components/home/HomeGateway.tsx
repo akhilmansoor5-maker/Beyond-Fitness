@@ -13,7 +13,6 @@ export function HomeGateway() {
       key: "fitness",
       href: "/fitness",
       external: false,
-      index: "01",
       label: "Arena A",
       title: "Fitness",
       meta: "Strength · PT · Conditioning",
@@ -24,7 +23,6 @@ export function HomeGateway() {
       key: "astra",
       href: astraHref,
       external: astraExternal,
-      index: "02",
       label: "Arena B",
       title: astra.name,
       meta: "Combat · Skill · Discipline",
@@ -41,8 +39,8 @@ export function HomeGateway() {
     >
       <div className="bf-shell bf-section">
         <Reveal>
-          <p className="bf-index mb-3">
-            <span className="bf-index__num">02</span>
+          <p className="bf-index mb-4">
+            <span className="bf-index__num">03</span>
             <span className="mx-2 opacity-40">/</span>
             Arenas
           </p>
@@ -63,15 +61,16 @@ export function HomeGateway() {
                   : {})}
                 className="group relative block overflow-hidden"
               >
-                <PhotoFrame
-                  label={arena.image.label}
-                  src={arena.image.src}
-                  tone={arena.tone}
-                  aspect="aspect-[4/5] sm:aspect-[16/11]"
-                  className="transition-transform duration-700 group-hover:scale-[1.03]"
-                />
+                <div className="bf-arena-tile overflow-hidden">
+                  <PhotoFrame
+                    label={arena.image.label}
+                    src={arena.image.src}
+                    tone={arena.tone}
+                    aspect="aspect-[4/5] sm:aspect-[16/11]"
+                  />
+                </div>
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.92)] via-[rgba(5,5,5,0.25)] to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.94)] via-[rgba(5,5,5,0.28)] to-transparent transition-opacity duration-500 group-hover:from-[rgba(5,5,5,0.98)]"
                   aria-hidden
                 />
                 <div className="absolute inset-x-0 bottom-0 p-4 md:p-6">
@@ -80,14 +79,14 @@ export function HomeGateway() {
                       <p className="bf-meta text-[var(--bf-accent)]">
                         {arena.label}
                       </p>
-                      <p className="bf-display mt-1 text-[clamp(2rem,6vw,3.5rem)] text-[var(--bf-bone)]">
+                      <p className="bf-display mt-1 text-[clamp(2rem,6vw,3.5rem)] text-[var(--bf-bone)] transition-transform duration-500 group-hover:translate-x-1">
                         {arena.title}
                       </p>
                       <p className="bf-meta mt-2 text-[var(--bf-mute)]">
                         {arena.meta}
                       </p>
                     </div>
-                    <span className="bf-meta text-[var(--bf-bone)] opacity-70 transition-opacity group-hover:opacity-100">
+                    <span className="bf-meta text-[var(--bf-bone)] opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
                       Enter →
                     </span>
                   </div>

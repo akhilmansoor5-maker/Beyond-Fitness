@@ -5,14 +5,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { brand, images } from "@/content/site";
-import { clipReveal, dur, easeOut, stagger } from "@/lib/motion";
+import { dur, easeImpact, easeOut, stagger } from "@/lib/motion";
 
 const fade = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
     transition: { duration: dur.slow, ease: easeOut },
+  },
+};
+
+const wordReveal = {
+  hidden: { y: "110%", opacity: 0 },
+  show: {
+    y: "0%",
+    opacity: 1,
+    transition: { duration: 0.95, ease: easeImpact },
   },
 };
 
@@ -31,13 +40,13 @@ export function Hero() {
           tone="default"
           aspect="absolute inset-0 h-full !aspect-auto"
           priority
-          className="h-full [&_img]:scale-105 [&_img]:object-[62%_center] md:[&_img]:object-[78%_center]"
+          className="h-full [&_img]:scale-105 [&_img]:object-[58%_center] sm:[&_img]:object-[70%_center] md:[&_img]:object-[78%_center]"
         />
         <div
           className="absolute inset-0 max-md:hidden"
           style={{
             background:
-              "linear-gradient(105deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.55) 42%, rgba(5,5,5,0.25) 68%, rgba(5,5,5,0.7) 100%)",
+              "linear-gradient(115deg, rgba(5,5,5,0.94) 0%, rgba(5,5,5,0.62) 38%, rgba(5,5,5,0.28) 62%, rgba(5,5,5,0.78) 100%)",
           }}
           aria-hidden
         />
@@ -45,88 +54,106 @@ export function Hero() {
           className="absolute inset-0 md:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,5,5,0.35) 0%, rgba(5,5,5,0.2) 35%, rgba(5,5,5,0.88) 100%)",
+              "linear-gradient(180deg, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.22) 38%, rgba(5,5,5,0.9) 100%)",
           }}
           aria-hidden
         />
-        <div className="bf-grain opacity-[0.22] max-md:opacity-[0.12]" aria-hidden />
+        <div className="bf-grain opacity-[0.18] max-md:opacity-[0.1]" aria-hidden />
       </div>
 
-      <div className="bf-shell relative z-10 flex min-h-[78svh] flex-col justify-end py-8 md:min-h-[calc(100svh-var(--bf-nav-h))] md:justify-between md:py-10 lg:pb-12">
+      <div className="bf-shell relative z-10 flex min-h-[82svh] flex-col justify-end gap-10 py-9 md:min-h-[calc(100svh-var(--bf-nav-h))] md:justify-between md:gap-12 md:py-12">
         <motion.div
-          className="max-w-4xl"
+          className="max-w-5xl"
           initial={reduce ? false : "hidden"}
           animate="show"
           variants={stagger}
         >
           <motion.p
             variants={fade}
-            className="bf-meta mb-4 text-[var(--bf-accent)] md:mb-6"
+            className="bf-meta mb-5 text-[var(--bf-accent)]"
           >
-            {brand.location}
+            Manjeri · Kerala · UA Mall
           </motion.p>
 
           <h1 className="sr-only">Beyond Fitness Manjeri</h1>
 
-          <motion.div
-            className="overflow-hidden"
-            initial={reduce ? false : "hidden"}
-            animate="show"
-            variants={clipReveal}
-          >
-            <p
-              className="bf-display-hero text-[var(--bf-bone)]"
+          <div className="overflow-hidden">
+            <motion.p
+              className="bf-hero-word text-[clamp(3.4rem,15vw,9.5rem)] text-[var(--bf-bone)]"
+              initial={reduce ? false : "hidden"}
+              animate="show"
+              variants={wordReveal}
               aria-hidden
             >
               Beyond
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
+          <div className="mt-1 overflow-hidden md:mt-2">
+            <motion.p
+              className="bf-hero-word text-[clamp(2.1rem,9vw,5.5rem)] text-[var(--bf-accent)]"
+              initial={reduce ? false : "hidden"}
+              animate="show"
+              variants={{
+                ...wordReveal,
+                show: {
+                  ...wordReveal.show,
+                  transition: { duration: 0.95, delay: 0.12, ease: easeImpact },
+                },
+              }}
+              aria-hidden
+            >
+              Fitness
+            </motion.p>
+          </div>
 
           <motion.p
             variants={fade}
-            className="bf-display mt-3 max-w-[16ch] text-[clamp(1.15rem,3.5vw,2rem)] text-[var(--bf-bone-dim)] md:mt-4"
+            className="mt-5 max-w-[28ch] text-[clamp(1rem,2.4vw,1.35rem)] font-medium leading-snug tracking-[-0.01em] text-[var(--bf-bone-dim)] md:mt-6"
           >
             {brand.tagline}
           </motion.p>
 
           <motion.p
             variants={fade}
-            className="mt-4 hidden max-w-[40ch] text-[1.05rem] leading-relaxed text-[var(--bf-mute)] md:block"
+            className="mt-3 hidden max-w-[42ch] text-[1rem] leading-relaxed text-[var(--bf-mute)] md:block"
           >
-            A training culture for body, skill, and discipline — fitness and
-            Astra under one standard.
+            Strength, skill, and discipline — fitness and Astra under one
+            training culture in Manjeri.
           </motion.p>
 
-          <motion.div className="bf-hero-ctas mt-7 md:mt-9" variants={fade}>
+          <motion.div className="bf-hero-ctas bf-on-void mt-8 md:mt-10" variants={fade}>
             <Button href="/start-training">Start training</Button>
             <Button href="/membership" variant="ghost">
               View plans
+            </Button>
+            <Button href="/personal-training" variant="ghost">
+              Personal training
             </Button>
           </motion.div>
         </motion.div>
 
         <motion.div
-          className="mt-10 flex items-end justify-between gap-6 border-t border-[rgba(244,244,241,0.14)] pt-5 md:mt-0"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
+          className="flex flex-col gap-5 border-t border-[rgba(244,244,241,0.14)] pt-5 sm:flex-row sm:items-end sm:justify-between"
+          initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: dur.slow, ease: easeOut }}
+          transition={{ delay: 0.5, duration: dur.slow, ease: easeOut }}
         >
-          <div className="flex gap-8 md:gap-14">
+          <div className="flex gap-8 md:gap-12">
             <Link href="/fitness" className="group">
               <p className="bf-meta text-[var(--bf-accent)]">Arena A</p>
-              <p className="bf-display mt-1 text-[1.25rem] text-[var(--bf-bone)] transition-colors group-hover:text-[var(--bf-accent)] md:text-[1.65rem]">
+              <p className="bf-display mt-1 text-[1.35rem] text-[var(--bf-bone)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--bf-accent)] md:text-[1.75rem]">
                 Fitness
               </p>
             </Link>
             <Link href="/astra" className="group">
               <p className="bf-meta text-[var(--bf-accent)]">Arena B</p>
-              <p className="bf-display mt-1 text-[1.25rem] text-[var(--bf-bone)] transition-colors group-hover:text-[var(--bf-accent)] md:text-[1.65rem]">
+              <p className="bf-display mt-1 text-[1.35rem] text-[var(--bf-bone)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--bf-accent)] md:text-[1.75rem]">
                 Astra
               </p>
             </Link>
           </div>
-          <p className="hidden bf-meta text-[var(--bf-mute)] sm:block">
-            Scroll
+          <p className="bf-meta text-[var(--bf-mute)]">
+            Scroll to explore
           </p>
         </motion.div>
       </div>

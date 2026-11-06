@@ -4,6 +4,7 @@ import { HomeGateway } from "@/components/home/HomeGateway";
 import { HomePhilosophy } from "@/components/home/HomePhilosophy";
 import { HomePricing } from "@/components/home/HomePricing";
 import { HomeProof } from "@/components/home/HomeProof";
+import { HomeTraining } from "@/components/home/HomeTraining";
 import { HomeClose } from "@/components/home/HomeClose";
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <HomePhilosophy />
+        <HomeTraining />
         <HomeGateway />
         <HomePricing />
         <HomeProof />

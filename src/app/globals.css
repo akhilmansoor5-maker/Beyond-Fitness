@@ -252,6 +252,7 @@ img {
 
 /* Buttons — sharp athletic, not pills */
 .bf-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -259,6 +260,7 @@ img {
   min-height: 2.85rem;
   padding: 0.7rem 1.35rem;
   border: 1px solid transparent;
+  overflow: hidden;
   font-family: var(--font-meta);
   font-size: 0.68rem;
   font-weight: 500;
@@ -266,14 +268,21 @@ img {
   text-transform: uppercase;
   cursor: pointer;
   transition:
-    background var(--bf-dur-fast) var(--bf-ease-out),
-    color var(--bf-dur-fast) var(--bf-ease-out),
-    border-color var(--bf-dur-fast) var(--bf-ease-out),
-    transform var(--bf-dur-fast) var(--bf-ease-out);
+    background 280ms var(--bf-ease-out),
+    color 280ms var(--bf-ease-out),
+    border-color 280ms var(--bf-ease-out),
+    transform 280ms var(--bf-ease-out),
+    box-shadow 280ms var(--bf-ease-out),
+    gap 280ms var(--bf-ease-out);
+}
+
+.bf-btn:hover {
+  transform: translateY(-2px);
+  gap: 0.85rem;
 }
 
 .bf-btn:active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
 .bf-btn__mark {
@@ -281,6 +290,11 @@ img {
   height: 0.45rem;
   background: currentColor;
   flex-shrink: 0;
+  transition: transform 280ms var(--bf-ease-out);
+}
+
+.bf-btn:hover .bf-btn__mark {
+  transform: translateX(2px) scale(1.15);
 }
 
 .bf-btn--primary {
@@ -292,6 +306,7 @@ img {
 .bf-btn--primary:hover {
   background: var(--bf-accent);
   border-color: var(--bf-accent);
+  box-shadow: 0 10px 28px rgba(161, 31, 46, 0.28);
 }
 
 .bf-btn--ghost {
@@ -303,6 +318,7 @@ img {
 .bf-btn--ghost:hover {
   border-color: var(--bf-accent);
   color: var(--bf-accent);
+  background: var(--bf-accent-muted);
 }
 
 .bf-on-void .bf-btn--primary,
@@ -321,6 +337,7 @@ img {
   background: var(--bf-accent);
   color: var(--bf-bone);
   border-color: var(--bf-accent);
+  box-shadow: 0 12px 32px rgba(161, 31, 46, 0.35);
 }
 
 .bf-on-void .bf-btn--ghost,
@@ -336,7 +353,7 @@ img {
 [data-theme="combat"] .bf-btn--ghost:hover,
 .bf-theme-dark .bf-btn--ghost:hover {
   border-color: var(--bf-bone);
-  background: rgba(244, 244, 241, 0.06);
+  background: rgba(244, 244, 241, 0.1);
   color: var(--bf-bone);
 }
 
@@ -428,7 +445,60 @@ img {
   align-items: end;
   gap: 0.75rem 1rem;
   padding-block: 1rem;
+  padding-inline: 0.35rem;
+  margin-inline: -0.35rem;
   border-bottom: 1px solid var(--bf-line);
+  transition:
+    background 260ms var(--bf-ease-out),
+    padding-inline 260ms var(--bf-ease-out),
+    color 260ms var(--bf-ease-out);
+}
+
+.bf-price-row:hover {
+  background: var(--bf-accent-muted);
+  padding-inline: 0.75rem;
+}
+
+.bf-hover-card {
+  transition:
+    transform 320ms var(--bf-ease-out),
+    border-color 320ms var(--bf-ease-out),
+    box-shadow 320ms var(--bf-ease-out),
+    background 320ms var(--bf-ease-out);
+}
+
+.bf-hover-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--bf-accent);
+  box-shadow: 0 16px 40px rgba(5, 5, 5, 0.08);
+}
+
+.bf-hover-link {
+  transition: color 240ms var(--bf-ease-out), transform 240ms var(--bf-ease-out);
+}
+
+.bf-hover-link:hover {
+  color: var(--bf-accent);
+}
+
+.bf-arena-tile {
+  transition: transform 700ms var(--bf-ease-out);
+}
+
+.bf-arena-tile img {
+  transition: transform 800ms var(--bf-ease-out);
+}
+
+.group:hover .bf-arena-tile img {
+  transform: scale(1.06);
+}
+
+.bf-hero-word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  text-transform: uppercase;
 }
 
 .bf-footer-credit {

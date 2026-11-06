@@ -1,7 +1,14 @@
 import { Button } from "@/components/ui/Button";
 import { OfferBanner } from "@/components/ui/OfferBanner";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { Reveal } from "@/components/ui/Reveal";
-import { contact, membership, offer, personalTraining } from "@/content/site";
+import {
+  contact,
+  images,
+  membership,
+  offer,
+  personalTraining,
+} from "@/content/site";
 
 export function MembershipView() {
   const waText = encodeURIComponent(
@@ -12,8 +19,18 @@ export function MembershipView() {
 
   return (
     <main className="pt-[var(--bf-nav-h)]">
-      <section className="bf-theme-dark border-b border-[rgba(244,244,241,0.1)] bg-[var(--bf-void)] text-[var(--bf-bone)]">
-        <div className="bf-shell bf-section">
+      <section className="bf-theme-dark relative overflow-hidden border-b border-[rgba(244,244,241,0.1)] bg-[var(--bf-void)] text-[var(--bf-bone)]">
+        <div className="absolute inset-0 opacity-40">
+          <PhotoFrame
+            label={images.homeHero.label}
+            src={images.homeHero.src}
+            tone="default"
+            aspect="absolute inset-0 h-full !aspect-auto"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(5,5,5,0.94)] via-[rgba(5,5,5,0.78)] to-[rgba(5,5,5,0.45)]" />
+        <div className="bf-shell relative z-[2] bf-section">
           <Reveal>
             <p className="bf-index mb-3">
               <span className="bf-index__num">01</span>
@@ -29,26 +46,44 @@ export function MembershipView() {
               Join Beyond Fitness Manjeri with straightforward plans — plus
               student and couple offers.
             </p>
+            <div className="bf-on-void mt-7 flex flex-col gap-2.5 sm:flex-row">
+              <Button
+                href={`${contact.whatsappUrl}?text=${waText}`}
+                external
+                className="justify-center"
+              >
+                Enquire on WhatsApp
+              </Button>
+              <Button
+                href="/start-training"
+                variant="ghost"
+                className="justify-center"
+              >
+                Start training
+              </Button>
+            </div>
           </Reveal>
         </div>
       </section>
 
       <section className="border-b border-[var(--bf-line)] bg-[var(--bf-page-alt)]">
-        <div className="bf-shell py-6 md:py-8">
-          <div className="flex flex-col gap-2 border border-[var(--bf-line)] bg-[var(--bf-page)] p-4 sm:flex-row sm:items-end sm:justify-between md:p-6">
-            <div>
-              <p className="bf-meta text-[var(--bf-accent)]">One-time</p>
-              <p className="bf-display mt-1 text-[clamp(1.5rem,5vw,2.5rem)] text-[var(--bf-text)]">
-                {membership.admission.title}
-              </p>
-              <p className="mt-1 text-[0.9rem] text-[var(--bf-text-mute)]">
-                {membership.admission.note}
+        <div className="bf-shell py-7 md:py-10">
+          <Reveal>
+            <div className="bf-hover-card flex flex-col gap-2 border border-[var(--bf-line)] bg-[var(--bf-page)] p-5 sm:flex-row sm:items-end sm:justify-between md:p-7">
+              <div>
+                <p className="bf-meta text-[var(--bf-accent)]">One-time</p>
+                <p className="bf-display mt-1 text-[clamp(1.5rem,5vw,2.5rem)] text-[var(--bf-text)]">
+                  {membership.admission.title}
+                </p>
+                <p className="mt-1 text-[0.9rem] text-[var(--bf-text-mute)]">
+                  {membership.admission.note}
+                </p>
+              </div>
+              <p className="bf-display text-[clamp(1.85rem,6vw,2.75rem)] text-[var(--bf-text)]">
+                {membership.admission.priceDisplay}
               </p>
             </div>
-            <p className="bf-display text-[clamp(1.85rem,6vw,2.75rem)] text-[var(--bf-text)]">
-              {membership.admission.priceDisplay}
-            </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -67,7 +102,7 @@ export function MembershipView() {
         <ol className="mt-6 border-t border-[var(--bf-line)]">
           {membership.plans.map((plan, i) => (
             <Reveal key={plan.title} delay={0.03 * i}>
-              <li className="bf-price-row">
+              <li className="bf-price-row cursor-default">
                 <span className="bf-num bf-meta text-[var(--bf-accent)]">
                   {plan.num}
                 </span>
@@ -100,22 +135,21 @@ export function MembershipView() {
           </Reveal>
 
           <div className="mt-6 grid gap-3 md:grid-cols-2">
-            {membership.specials.map((item) => (
-              <div
-                key={item.title}
-                className="border border-[var(--bf-line)] bg-[var(--bf-page)] p-4 md:p-6"
-              >
-                <p className="bf-meta text-[var(--bf-accent)]">{item.num}</p>
-                <p className="bf-display mt-2 text-[clamp(1.35rem,4vw,2rem)] text-[var(--bf-text)]">
-                  {item.title}
-                </p>
-                <p className="bf-display mt-3 text-[clamp(1.65rem,5vw,2.35rem)] text-[var(--bf-text)]">
-                  {item.priceDisplay}
-                </p>
-                <p className="mt-2 text-[0.9rem] text-[var(--bf-text-mute)]">
-                  {item.note}
-                </p>
-              </div>
+            {membership.specials.map((item, i) => (
+              <Reveal key={item.title} delay={0.04 * i}>
+                <div className="bf-hover-card border border-[var(--bf-line)] bg-[var(--bf-page)] p-5 md:p-6">
+                  <p className="bf-meta text-[var(--bf-accent)]">{item.num}</p>
+                  <p className="bf-display mt-2 text-[clamp(1.35rem,4vw,2rem)] text-[var(--bf-text)]">
+                    {item.title}
+                  </p>
+                  <p className="bf-display mt-3 text-[clamp(1.65rem,5vw,2.35rem)] text-[var(--bf-text)]">
+                    {item.priceDisplay}
+                  </p>
+                  <p className="mt-2 text-[0.9rem] text-[var(--bf-text-mute)]">
+                    {item.note}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -137,7 +171,7 @@ export function MembershipView() {
           <ol className="mt-6 border-t border-[var(--bf-line)]">
             {personalTraining.packages.map((pkg, i) => (
               <Reveal key={pkg.title} delay={0.03 * i}>
-                <li className="bf-price-row">
+                <li className="bf-price-row cursor-default">
                   <span className="bf-num bf-meta text-[var(--bf-accent)]">
                     {pkg.num}
                   </span>
@@ -176,11 +210,11 @@ export function MembershipView() {
               Enquire on WhatsApp
             </Button>
             <Button
-              href="/start-training"
+              href="/personal-training"
               variant="ghost"
               className="w-full justify-center sm:w-auto"
             >
-              Start training form
+              Explore PT
             </Button>
           </div>
         </div>
